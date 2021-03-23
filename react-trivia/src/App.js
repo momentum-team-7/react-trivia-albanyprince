@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-imprt axios from 'axios'
+import axios from 'axios'
 
 function App() {
   const [categories, setCategories] = useState([])
 // should "name go in the brackets?"
   useEffect(() => {
-    console.log('useEffect runs', categories)
-    axios.get('https://opentdb.com/api_category.php').then((response) => {setCategories(response.data)
+    
+    axios.get('https://opentdb.com/api_category.php').then((response) => {setCategories(response.data.trivia_categories)
     }) 
   }, [])
 
@@ -17,7 +17,7 @@ function App() {
       <h1>CATEGORIES</h1>
       <ul>
         {categories.map((category) => (
-          <li key={category.Name}>{catergory.Category}</li>
+          <li key={category.category}>{category.name}</li>
         ))}
       </ul>
     </div>    
