@@ -1,26 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import axios from 'axios'
+import 'tachyons'
+import Categories from './components/CategoryList'
+import Questions from './components/TriviaQuestions'
+
 
 function App() {
   const [categories, setCategories] = useState([])
-// should "name go in the brackets?"
+  const [selectedCategory, setSelectedCategory] = useState(null)
+
   useEffect(() => {
     
-    axios.get('https://opentdb.com/api_category.php').then((response) => {setCategories(response.data.trivia_categories)
-    }) 
-  }, [])
+    axios
+    .get('https://opentdb.com/api_category.php')
+    .then((response) => {setCategories(response.data.trivia_categories)
+        }) 
+    }, [])
 
   console.log('RENDERING:', categories)
 
-  return (
+ return (
     <div className="App">
-      <h1>CATEGORIES</h1>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.category}>{category.name}</li>
-        ))}
-      </ul>
-    </div>    
+      <h1>Trivia Travesty</h1>
+
+      <section>
+      {selectedCategory ? ( 
+        <Questions
+        category={selectedCategory}
+        handleGoBack={() => setSelectedCategory(null)}
+        />
+        ) : (
+          <Categories
+          categories={categories}
+          setSelectedCategory={setSelectedCategory}
+        />
+        )}  
+     </section>   
+    </div> 
   )
 }
 
