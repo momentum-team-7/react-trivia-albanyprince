@@ -21,19 +21,21 @@ export default function Question({ category, handleGoBack }) {
        })
    }, [category]);
 
-   return questions.length > 0 ? (
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+   
+   return questions.length > currentQuestion ? (
   <div>
   <button className="go-back" onClick={handleGoBack}
             >Back to Categories
             </button>
     <div className="question-container">
-        <h2> Question {questions[0].question}</h2>
+        <h2> Question: {questions[currentQuestion].question}</h2>
     </div>
 
-        <div className='grid grid-cols-1 gap-7 mt-7'>
-            <button className='selection'>{questions[0].incorrect_answers[2]}</button>
-            <button className='selection'>{questions[0].incorrect_answers[1]}</button>
-            <button className='selection'>{questions[0].correct_answer}</button>
+        <div className='answer-options'>
+            <button className='selection'>{questions[currentQuestion].incorrect_answers[2]}</button>
+            <button className='selection'>{questions[currentQuestion].incorrect_answers[1]}</button>
+            <button className='selection'>{questions[currentQuestion].correct_answer}</button>
 
         </div>
  </div>    
