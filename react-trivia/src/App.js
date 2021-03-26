@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'tachyons'
 import Categories from './components/CategoryList'
-import Questions from './components/TriviaQuestions'
+import Question from './components/Question'
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
 
       <section>
       {selectedCategory ? ( 
-        <Questions
+        <Question
         category={selectedCategory}
         handleGoBack={() => setSelectedCategory(null)}
         />
