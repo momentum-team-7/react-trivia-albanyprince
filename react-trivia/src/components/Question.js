@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Answer from './components/Answer'
 
 
-
-export default function Question({ category, handleGoBack }) {
+export default function Question({ category, handleGoBack, handleAnswer }) {
     const [questions, setQuestions] = useState([])
     useEffect(() => {
        axios.get(`https://opentdb.com/api.php?amount=10&category=${category.id}&type=multiple`).then((response) => {
@@ -20,9 +20,13 @@ export default function Question({ category, handleGoBack }) {
          setQuestions(data)  
        })
    }, [category]);
-
+    
+    // const handleAnswer = (answer) => {
+    //     //answer
+    // };
     const [currentQuestion, setCurrentQuestion] = useState(0);
-   
+    
+    
    return questions.length > currentQuestion ? (
   <div>
   <button className="go-back" onClick={handleGoBack}
@@ -33,9 +37,10 @@ export default function Question({ category, handleGoBack }) {
     </div>
 
         <div className='answer-options'>
-            <button className='selection'>{questions[currentQuestion].incorrect_answers[2]}</button>
-            <button className='selection'>{questions[currentQuestion].incorrect_answers[1]}</button>
-            <button className='selection'>{questions[currentQuestion].correct_answer}</button>
+            <button onClick={() => handleAnswer(shuffledAnswer[3])} answer={shuffledAnswer[3]} />
+            <button onClick={() => handleAnswer(shuffledAnswer[2])} answer={shuffledAnswer[2]} />
+            <button onClick={() => handleAnswer(shuffledAnswer[1])} answer={shuffledAnswer[1]} />
+            <button onClick={() => handleAnswer(shuffledAnswer[0])} answer={shuffledAnswer[0]} />
 
         </div>
  </div>    

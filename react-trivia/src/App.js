@@ -3,6 +3,8 @@ import axios from 'axios'
 import 'tachyons'
 import Categories from './components/CategoryList'
 import Question from './components/Question'
+import Answer from './components/Answer'
+
 
 
 function App() {
