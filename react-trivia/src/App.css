@@ -42,12 +42,12 @@ background-color: #ff6b6b;
   font-family: Arial;
 }
 
-.card {
-  background-color: black;
-  color: white;
-  border-radius: 25px 50px;
-  border: 6px solid #ffe66d;
-  height: 300px;
-  width: 300px;
+.answer-choice {
+  background-color: #ffe66d;
+  color: #183a37;
+  border-radius: 50px;
+  border: 6px solid #183a37;
+  height: 100px;
+  width: 200px;
   text-align: center;
 }
