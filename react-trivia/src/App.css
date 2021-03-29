@@ -42,7 +42,7 @@ background-color: #ff6b6b;
   font-family: Arial;
 }
 
-.answer-choice {
+.options {
   background-color: #ffe66d;
   color: #183a37;
   border-radius: 50px;
@@ -50,4 +50,11 @@ background-color: #ff6b6b;
   height: 100px;
   width: 200px;
   text-align: center;
+}
+
+label {
+  color: #183a37;
+  font-size: 40px;
+  font-family: Arial;
+  
 }

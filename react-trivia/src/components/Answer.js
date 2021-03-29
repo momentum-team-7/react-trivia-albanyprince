@@ -1,40 +1,44 @@
 import React, { useState } from 'react'
-import lodash from 'lodash'
 import he from 'he'
+// import lodash from 'lodash'
 
-export default function Answer ({ correct_answer, incorrect_answers, questions, currentQuestion, setCurrentQuestion }) {
+export default function Answer ({ correct_answer, incorrect_answers, questions, currentQuestion, setCurrentQuestion, correctAnswer, selected }) {
    
     const answers = [correct_answer, ...incorrect_answers]
-    let correctAnswer = correct_answer
     const _ = require('lodash')
     const shuffledAnswers = _.shuffle(answers)
-    const [score, setScore] = useState(0)
-    const [showScore, setShowScore] = useState(0)
-    
     const [selectedAnswer, setSelectedAnswer] = useState(0)
+ 
+    const [score, setScore] = useState(0)
+    // const [showScore, setShowScore] = useState(0)
     
-    const handleAnswer = (correctAnswer) => {
-       if (correctAnswer) {
-           setScore(score + 1)
-       }
-       const nextQuestion = currentQuestion + 1;
-       if(nextQuestion < questions.length) {
-           setCurrentQuestion(nextQuestion);
-       } else {
-           setShowScore(true);
-       }
-    };
+    // const [selectedAnswer, setSelectedAnswer] = useState(null)
+     
+    
     return (
-    <div className='answer-options'>
+    <div>
            {shuffledAnswers.map((answer, index) => {
                return(
-                   <button className='answer-choice' onClick={() => handleAnswer(answer.correctAnswer)}>{he.decode(answer)}</button>
+                <div className="answers">
+                   <button className="options" onClick={() => {answer === correctAnswer ? setSelectedAnswer(true) : setSelectedAnswer(false);
+                   let newScore = score
+                   correctAnswer === answer ? setScore(newScore + 1) : setScore(newScore);}
+                   }>{(he.decode(answer))}</button>
+                   
+                
+                      
+                </div>
                )
                
            })}
+                <div className="correct" style={selectedAnswer === true ? {} : { display: 'none'}}>YES!</div>
+                   <div className="incorrect" style={selectedAnswer === false ? {} : { display: 'none'}}>NO!</div> 
         <div className="score-box">
             {score}
         </div>
+            <button className='next-question' onClick={() => {
+                    selected();
+                }}>Next Question</button>
     </div>
     
 )
